@@ -1,0 +1,184 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.gsoft.mobile</groupId>
+	<artifactId>mobile-sys-web</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>war</packaging>
+	  
+	<repositories>
+		<repository>
+			<id>snapshots</id>
+			<url>${nexus.root}/content/repositories/snapshots</url>
+		</repository>
+		
+		<repository>
+		    <id>springsource-repository</id>
+		    <name>Spring Maven Releases, Milestones, and Snapshots</name>
+		    <url>http://repo.springsource.org/snapshot</url>
+		</repository>
+		
+		<repository>
+			<id>releases</id>
+			<url>${nexus.root}/content/repositories/releases</url>
+		</repository>
+	    
+		<repository>
+			<id>maven.central</id>
+			<url>${nexus.root}/content/repositories/central</url>
+		</repository>
+	
+		<repository>
+			<id>Activiti</id>
+			<url>${nexus.root}/content/repositories/activiti/</url>
+		</repository>
+		
+		<repository>
+			<id>thirdpart</id>
+			<url>${nexus.root}/content/repositories/thirdparty</url>
+		</repository>
+	
+	</repositories>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<!-- 		<nexus.root>http://119.79.233.34/nexus</nexus.root> -->
+		   <!-- <nexus.root>http://20.13.2.48:8081/nexus</nexus.root> -->
+		   <nexus.root>http://59.172.208.5/nexus</nexus.root>
+		<junit.version>4.8.2</junit.version>
+		<springframework.webflow.version>2.3.1.RELEASE</springframework.webflow.version>
+		<gsoft.framework.version>1.0.0.RC</gsoft.framework.version>
+		<gsoft.platform.version>1.0.0.RC</gsoft.platform.version>
+		
+		<gsoft.mobile.version>1.0.0-SNAPSHOT</gsoft.mobile.version>
+	</properties> 
+	<!-- 本模块使用的包 -->
+	<dependencies>
+		
+		<!-- 公共模块 -->
+		<dependency>
+			<groupId>com.gsoft.mobile</groupId>
+			<artifactId>mobile-sys-manager</artifactId>
+			<version>${gsoft.mobile.version}</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.gsoft.mobile</groupId>
+			<artifactId>mobile-sys-core</artifactId>
+			<version>${gsoft.mobile.version}</version>
+			<scope>compile</scope>
+		</dependency>
+		 <dependency>
+			<groupId>com.gsoft.mobile</groupId>
+			<artifactId>mobile-sys-pub</artifactId>
+			<version>${gsoft.mobile.version}</version>
+			<scope>compile</scope>
+		</dependency> 
+		
+		
+		<!--核心框架  -->
+		<dependency>
+			<groupId>com.gsoft.framework</groupId>
+			<artifactId>gsoft-framework-core</artifactId>
+			<version>${gsoft.framework.version}</version>
+			<scope>compile</scope>
+			<exclusions>
+				<exclusion>
+					<artifactId>icu4j</artifactId>
+					<groupId>com.ibm.icu</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!--核心框架上下文  -->
+		<dependency>
+			<groupId>com.gsoft.framework</groupId>
+			<artifactId>gsoft-framework-context</artifactId>
+			<version>${gsoft.framework.version}</version>
+			<scope>compile</scope>
+		</dependency>
+		<!--标签  -->
+		<dependency>
+			<groupId>com.gsoft.framework</groupId>
+			<artifactId>gsoft-framework-taglib</artifactId>
+			<version>${gsoft.framework.version}</version>
+			<scope>compile</scope>
+		</dependency>
+		<!--安全框架  -->
+		<dependency>
+			<groupId>com.gsoft.framework</groupId>
+			<artifactId>gsoft-framework-security</artifactId>
+			<version>${gsoft.framework.version}</version>
+			<scope>compile</scope>
+		</dependency>
+		
+<!-- 		<dependency> -->
+<!-- 			<groupId>com.gsoft.framework</groupId> -->
+<!-- 			<artifactId>gsoft-framework-job</artifactId> -->
+<!-- 			<version>${gsoft.framework.version}</version> -->
+<!-- 			<scope>compile</scope> -->
+<!-- 		</dependency> -->
+		
+		<!-- esb  -->
+		<dependency>
+			<groupId>com.gsoft.framework</groupId>
+			<artifactId>gsoft-framework-esb</artifactId>
+			<version>${gsoft.framework.version}</version>
+			<scope>compile</scope>
+		</dependency>
+		 
+		<!-- web 容器相关 -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>jsp-api</artifactId>
+			<version>2.1</version>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+	<build>
+		<finalName>mobsys</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>tomcat-maven-plugin</artifactId>
+				<version>1.1</version>
+				<configuration>
+					<uriEncoding>UTF-8</uriEncoding>
+					<port>8083</port>
+					<path>/mobsys</path>
+				</configuration>
+			</plugin>
+			<plugin>  
+		        <groupId>org.apache.maven.plugins</groupId>  
+		        <artifactId>maven-compiler-plugin</artifactId>  
+		        <configuration>  
+		          <source>1.6</source>  
+		          <target>1.6</target>  
+		        </configuration>  
+		    </plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<version>2.9</version>
+				<configuration>
+					<additionalProjectnatures>
+						<projectnature>org.eclipse.jdt.core.javanature</projectnature>
+						<projectnature>org.eclipse.m2e.core.maven2Nature</projectnature>
+						<projectnature>org.springframework.ide.eclipse.core.springnature</projectnature>
+					</additionalProjectnatures>
+					<additionalBuildcommands>
+						<buildcommand>org.eclipse.jdt.core.javabuilder</buildcommand>
+						<buildcommand>org.eclipse.m2e.core.maven2Builder</buildcommand>
+						<buildcommand>org.springframework.ide.eclipse.core.springbuilder</buildcommand>
+					</additionalBuildcommands>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

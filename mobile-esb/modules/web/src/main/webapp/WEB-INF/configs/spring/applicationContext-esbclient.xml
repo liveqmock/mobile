@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration-2.2.xsd
+		http://www.springframework.org/schema/integration/file http://www.springframework.org/schema/integration/file/spring-integration-file-2.2.xsd
+		http://www.springframework.org/schema/integration/http http://www.springframework.org/schema/integration/http/spring-integration-http-2.2.xsd
+		http://www.springframework.org/schema/integration/rmi http://www.springframework.org/schema/integration/rmi/spring-integration-rmi-2.2.xsd
+		http://www.springframework.org/schema/integration/ws http://www.springframework.org/schema/integration/ws/spring-integration-ws-2.2.xsd"
+	xmlns:int="http://www.springframework.org/schema/integration"
+	xmlns:int-file="http://www.springframework.org/schema/integration/file"
+	xmlns:int-http="http://www.springframework.org/schema/integration/http"
+	xmlns:int-mail="http://www.springframework.org/schema/integration/mail"
+	xmlns:int-rmi="http://www.springframework.org/schema/integration/rmi"
+	xmlns:int-ws="http://www.springframework.org/schema/integration/ws">
+	
+	<int:service-activator input-channel="rmiExchange" ref="rmiServiceFactory" method="exchange" />
+	<int:gateway id="rmiServiceFactory" service-interface="com.gsoft.framework.esb.rmi.RmiServiceFactory" />
+	
+	<bean name="resConverter" class="com.gsoft.esb.converter.HttpResConverter"></bean>
+	<int-http:inbound-gateway request-channel="start"
+		name="/esb/{channel}/{beanName}/{methodName}.json"
+		path="/esb/{channel}/{beanName}/{methodName}.json"
+		supported-methods="GET,POST" 
+		message-converters="resConverter">
+		<int-http:header name="beanName" expression="#pathVariables.beanName" />
+		<int-http:header name="methodName" expression="#pathVariables.methodName" />
+		<int-http:header name="channel" expression="#pathVariables.channel" />
+		<int-http:header name="Content-Type" expression="'application/json'" />
+		<int-http:header name="Content-Encoding" expression="'UTF-8'" />
+	</int-http:inbound-gateway>
+	
+	
+	<!-- 安全控制路由 -->
+	<bean id="securityRequestRouter" class="com.gsoft.esb.router.SecurityRequestRouter">
+		<property name="useToken" value="true"/>
+		<property name="pubParams">
+			<list>
+				<value>userId</value>
+				<value>bankcardNum</value>
+			</list>
+		</property>
+		<property name="channelMapping">
+			<map>
+				<entry key="sys" value="sys"></entry>
+			</map>
+		</property>
+	</bean>
+	
+	<!--  -->
+	<int:router input-channel="start"  ref="securityRequestRouter"/>
+	
+	<int:channel id="beanStart"></int:channel>
+	<int:router input-channel="beanStart"  ref="securityRequestRouter"/>
+	
+	<int-rmi:outbound-gateway request-channel="sys" remote-channel="rmiExchange" 
+		host="127.0.0.1" port="1099"/>
+	
+	<bean class="org.springframework.integration.http.inbound.UriPathHandlerMapping" />
+	
+	<!-- channel启动类配置  -->
+	<bean name="channelResolver" class="org.springframework.integration.support.channel.BeanFactoryChannelResolver"></bean>
+	<bean class="org.springframework.integration.core.MessagingTemplate">
+		<property name="channelResolver" ref="channelResolver"></property>
+	</bean>
+	
+</beans>

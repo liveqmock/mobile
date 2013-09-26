@@ -1,0 +1,159 @@
+@CHARSET "UTF-8";
+
+.youi-pageEditor{
+	padding:5px;
+	position:relative;
+	overflow-y:auto;
+	height:450px;
+}
+
+.youi-pageEditor .widget-item{
+	padding:5px;
+	border:1pt solid silver;
+	z-index:2;
+	cursor:pointer;
+	background:white;
+}
+
+.youi-pageEditor .widget-button{
+	padding:5px;
+	border:1pt solid silver;
+	z-index:2;
+	cursor:pointer;
+	background:white;
+	white-space:nowrap;
+}
+
+.widget-button span{
+	cursor:text;
+}
+
+.widget-item div.widget-html{
+	cursor:auto;
+}
+
+.youi-pageEditor .widget-item.selected,
+.youi-pageEditor .widget-field.selected,
+.youi-pageEditor .widget-button.selected,
+.youi-pageEditor .table-td.selected{
+	border:1pt dotted blue;
+}
+
+.youi-pageEditor .layoutDrop,
+.youi-pageEditor .fieldDrop,
+.youi-pageEditor .fieldLabel,
+.youi-pageEditor .fieldLayoutDrop,
+.youi-pageEditor .buttonDrop{
+	padding:6px 5px;
+	border:1pt dotted silver;
+	background:#F7F7F7;
+}
+.youi-pageEditor .grid-formButtons{
+	padding:5px;
+	border-bottom:1pt solid silver;
+}
+.youi-pageEditor .form-button{
+	border:1pt solid silver;
+	padding:2px 10px;
+	margin:1px 2px;
+	display:inline;
+}
+
+.youi-pageEditor .fieldLabel{
+	background:#eefffe;
+}
+
+.youi-pageEditor td.layoutDrop,.youi-pageEditor td.buttonDrop{
+	padding:5px;
+}
+
+.youi-pageEditor .drop-marker{
+	position:absolute;
+	height:11px;
+	background: no-repeat left center;
+	width:10px;
+	display:none;
+	z-index:10;
+}
+
+.youi-pageEditor .drop-marker.child{
+	background-image: url(images/tree/plus.gif);
+	display:block;
+}
+
+.youi-pageEditor .drop-marker.after,.youi-pageEditor .drop-marker.before{
+	background-image: url(images/tree/marker.gif);
+	display:block;
+}
+
+.youi-pageEditor.droping,.youi-pageEditor .droping{
+	background:#eeffcc;
+}
+
+.widget-field,.widget-button{
+	cursor:move;
+}
+
+.youi-pageEditor .panel-header .widget-caption{
+	background:no-repeat left center;
+	padding-left:18px;
+}
+
+.fieldDrop  .widget-field{
+	border:1pt solid silver;
+	padding:3px 1px;
+}
+
+.fieldDrop  .fieldText{
+	background-image: url(images/field/text-bg.gif);
+}
+
+.fieldDrop  .fieldSelect{
+	background: url(images/formdesigner/field-select.gif) no-repeat center right;
+}
+
+.grid-table .grid-col{
+	height:20px;
+	text-align:center;
+}
+.grid-table .grid-col.grid-col-header{
+ 	background:white url("images/grid/grid-header-bg.jpg") repeat-x scroll 0 -1px;
+ 	height:60px;
+}
+
+
+.grid-col-helper{
+	border:1pt solid silver;
+	line-height:25px;
+	text-align:center;
+	vertical-align:middle;
+	background:white url("images/grid/grid-header-bg.jpg") repeat-x scroll 0 -1px;
+}
+
+
+.grid-table .grid-col.grid-col-header.selected{
+	background-image: url("images/grid/grid-blue-hd.gif");
+}
+
+.grid-table .grid-col.grid-col-header.droping{
+	background-image:url("images/grid/main_content004.gif");
+}
+
+.youi-pageEditor .youi-button{
+	display:inline;
+	background:none;
+}
+
+
+.youi-pageEditor .youi-fieldLayout table {
+	/**table-layout: auto;*/
+}
+
+
+.youi-pageEditor .table-td.td-selected{
+	background:#EFFEEF;
+}
+
+.youi-pageEditor .youi-form{
+	border:1pt solid silver;
+}

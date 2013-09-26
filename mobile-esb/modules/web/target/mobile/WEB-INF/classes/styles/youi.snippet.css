@@ -1,0 +1,9 @@
+@CHARSET "UTF-8";
+.snippet-item{
+	padding:3px 3px 3px 16px;
+	border-bottom:1pt solid silver;
+}
+
+.snippet-item span{
+	cursor:move;
+}

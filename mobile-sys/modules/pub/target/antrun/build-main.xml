@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="maven-antrun-" default="main"  >
+<target name="main">
+  <echo message="make clean 2..."/>
+  <copy todir="src/main/java/">
+    <fileset dir="../core/src/main/java">
+      <include name="**/entity/**"/>
+      <include name="**/*Manager.java"/>
+    </fileset>
+    <fileset dir="../manager/src/main/java">
+      <include name="**/entity/**"/>
+      <include name="**/*Manager.java"/>
+    </fileset>
+    <fileset dir="../param/src/main/java">
+      <include name="**/entity/**"/>
+      <include name="**/*Manager.java"/>
+    </fileset>
+    <fileset dir="../trades/src/main/java">
+      <include name="**/entity/**"/>
+      <include name="**/*Manager.java"/>
+    </fileset>
+  </copy>
+</target>
+</project>

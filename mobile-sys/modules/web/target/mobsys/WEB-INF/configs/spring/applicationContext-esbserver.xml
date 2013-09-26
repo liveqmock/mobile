@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration-2.2.xsd
+		http://www.springframework.org/schema/integration/file http://www.springframework.org/schema/integration/file/spring-integration-file-2.2.xsd
+		http://www.springframework.org/schema/integration/http http://www.springframework.org/schema/integration/http/spring-integration-http-2.2.xsd
+		http://www.springframework.org/schema/integration/rmi http://www.springframework.org/schema/integration/rmi/spring-integration-rmi-2.2.xsd
+		http://www.springframework.org/schema/context  http://www.springframework.org/schema/context/spring-context-2.5.xsd
+		http://www.springframework.org/schema/integration/ws http://www.springframework.org/schema/integration/ws/spring-integration-ws-2.2.xsd"
+	xmlns:int="http://www.springframework.org/schema/integration"
+	xmlns:int-file="http://www.springframework.org/schema/integration/file"
+	xmlns:int-http="http://www.springframework.org/schema/integration/http"
+	xmlns:int-mail="http://www.springframework.org/schema/integration/mail"
+	xmlns:int-rmi="http://www.springframework.org/schema/integration/rmi"
+	xmlns:int-ws="http://www.springframework.org/schema/integration/ws">
+
+	<context:component-scan base-package="com.gsoft.framework.esb.invoke"/>
+	
+	<!-- 把本地服务发布为rmi服务 -->
+	<int-rmi:inbound-gateway id="rmiServiceGateway"
+		request-channel="rmiExchange"/>
+	<int:service-activator input-channel="rmiExchange"
+		ref="rmiServiceFactory" method="exchange" />
+	<bean name="rmiServiceFactory" class="com.gsoft.framework.esb.rmi.RmiServiceFactoryImpl">
+		<property name="serviceInvoker" ref="serviceInvoker"/>
+		
+		<!-- 是否校验token -->
+		<property name="checkToken" value="true"/>
+		<!-- 业务系统名 -->
+		<property name="appName" value="sys"/>
+		<!-- 业务系校验码 -->
+		<property name="appKey" value="sys"/>
+	</bean>
+
+	
+</beans>

@@ -1,0 +1,224 @@
+@CHARSET "UTF-8";
+.youi-workflow{
+	position:relative;
+	overflow:auto;
+}
+.youi-workflow .bg{
+	width:100%;
+	height:100%;
+	background:url(images/workflow/bg.png) repeat;
+	z-index:-2;
+	filter:alpha(opacity=40);
+	opacity:0.4;
+}
+
+.youi-workflow canvas{
+	width:100%;
+	height:100%;
+	position:absolute;
+}
+
+.youi-workflow .node{
+	width:100px;
+	height:50px;
+	line-height:50px;
+	text-align:center;
+	vertical-align:middle;
+	position:absolute;
+	background-repeat:no-repeat;
+	background-position:center;
+	padding:1pt;
+	z-index:2;
+	overflow:hidden;
+}
+
+.youi-workflow .node.startEvent{
+	width:50px;
+	background-image:url(images/workflow/48/start_event_empty.png);
+}
+
+.youi-workflow .node.endEvent{
+	width:50px;
+	background-image:url(images/workflow/48/end_event_terminate.png);
+}
+
+.youi-workflow .node.userTask{
+	background-image:url(images/workflow/task_empty_110.png);
+}
+
+.youi-workflow .node.exclusiveGateway{
+	width:50px;
+	background-image:url(images/workflow/48/gateway_exclusive.png);
+}
+
+
+.youi-workflow .node.ui-selected,.node.ui-selecting{
+	color:#0A04E3;
+	padding:0pt;
+	border:1pt dotted #000;
+	font-style:italic;
+}
+
+.youi-workflow .node.node-over{
+	color:blue;
+	padding:0pt;
+	border:1pt dotted blue;
+	font-style:italic;
+}
+
+.youi-workflow .node.click{
+	color:red;
+	padding:0pt;
+	border:1pt dotted #000;
+}
+
+.youi-workflow .node-dragging{
+	position:absolute;
+	border:1pt dotted #000;
+	background:silver;
+	filter:alpha(opacity=40);
+	opacity:0.4;
+	z-index:10;
+	display:none;
+}
+
+.youi-workflow .select-dragging .helper-element{
+	position:absolute;
+	border:1pt dotted #000;
+	background:silver;
+	filter:alpha(opacity=40);
+}
+
+.youi-workflow .transition .point,
+.youi-workflow .transition .center-point,
+.youi-workflow .point-dragging{
+	position:absolute;
+	background-color:#000;
+	width:5px;
+	height:5px;
+	cursor:move;
+	z-index:1;
+}
+
+.youi-workflow .transition .center-point{
+	display:none;
+}
+
+.youi-workflow .transition.click .center-point{
+	display:block;
+	background:red;
+}
+
+.youi-workflow .point-dragging{
+	display:none;
+}
+
+.youi-workflow .select-dragging{
+	position:absolute;
+	border:1pt dotted #000;
+}
+
+.youi-workflow .container{
+	position:absolute;
+	left:0;
+	top:0;
+}
+
+.youi-workflow canvas{
+	position:absolute;
+	zoom:1;
+	left:0;
+	top:0;
+}
+
+.ui-selectable-helper{
+	position:absolute;
+	border:1pt dotted silver;
+}
+
+.youi-workflow .node-over-panel{
+	left:0;
+	top:0;
+	position:absolute;
+	z-index:1;
+	display:none;
+	height:100px;
+}
+
+.youi-workflow .node-over-panel .panel-button{
+	width:19px;
+	height:19px;
+	padding:1px;
+	float:right;
+	background:white no-repeat center center;
+	z-index:5;
+}
+
+.youi-workflow .node-over-panel .panel-button:hover{
+	padding:0px;
+	border:1pt solid silver;
+}
+
+.youi-workflow .node-over-panel .panel-button.hide{
+	display:none;
+}
+
+.youi-workflow .node-over-panel .panel-top{
+	margin-right:25px;
+}
+
+.youi-workflow .node-over-panel .panel-center{
+	clear:both;
+	width:25px;
+	float:right;
+}
+
+.youi-workflow .node-over-panel .panel-bottom{
+	margin-right:25px;
+	clear:both;
+}
+
+.youi-workflow .node-over-panel .panel-button.delete{
+	background-image:url(images/workflow/delete.gif);
+}
+
+.youi-workflow .node-over-panel .panel-button.newUserTask{
+	background-image:url(images/workflow/type.user.png);
+}
+
+.youi-workflow .node-over-panel .panel-button.newGateway{
+	background-image:url(images/workflow/type.gateway.exclusive.png);
+}
+
+.youi-workflow .node-over-panel .panel-button.newEndEvent{
+	background-image:url(images/workflow/type.endevent.none.png);
+}
+
+.youi-workflow .node-over-panel .panel-button.newConnection{
+	background-image:url(images/workflow/ereference.gif);
+}
+
+.youi-workflow .node-over-panel .panel-button.formDesign{
+	background-image:url(images/workflow/form.png);
+}
+
+/***************************************/
+.youi-tree li.treeNode.startEvent >span{
+	background-image:url(images/workflow/16/start_event_empty.png);
+}
+
+.youi-tree li.treeNode.userTask >span{
+	background-image:url(images/workflow/16/task_empty.png);
+}
+
+.youi-tree li.treeNode.exclusiveGateway >span{
+	background-image:url(images/workflow/16/gateway_exclusive.png);
+}
+
+.youi-tree li.treeNode.endEvent >span{
+	background-image:url(images/workflow/16/end_event_terminate.png);
+}
+
+.youi-tree li.treeNode.transition >span{
+	background-image:url(images/workflow/16/flow_sequence.png);
+}

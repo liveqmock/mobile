@@ -1,0 +1,18 @@
+@CHARSET "UTF-8";
+.youi-grid .row-new,.youi-grid .row-new input.grid-tree-input{
+	color:blue;
+}
+
+.youi-grid .row.tree-level-2 .grid-tree-node{
+	padding-left:10px;
+}
+
+.youi-grid .row.tree-level-3 .grid-tree-node{
+	padding-left:20px;
+}
+
+.youi-grid  .tree-node-text input.grid-tree-input{
+	border:0px;
+	border-bottom:1px dotted silver;
+	background: none repeat scroll 0 0 transparent;
+}

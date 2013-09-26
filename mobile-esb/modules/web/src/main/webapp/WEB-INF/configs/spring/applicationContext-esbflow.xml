@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+           http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="flowRegistry" class="com.gsoft.esb.flow.config.FlowRegistryFactoryBean">
+		<property name="flowBuilderServices" ref="flowBuilderServices"></property>
+	</bean>
+	
+	<bean id="flowBuilderServices" class="com.gsoft.esb.flow.engine.builder.support.FlowBuilderServices">
+		<property name="conversionService" ref="conversionService"></property>
+		<property name="expressionParser" ref="expressionParser"></property>
+	</bean>
+	
+	<bean name="expressionParser" class="com.gsoft.esb.flow.expression.spel.WebFlowSpringELExpressionParser">
+		<constructor-arg ref="spelExpressionParser">
+		</constructor-arg>
+	</bean>
+	
+	<bean name="conversionService" class="org.springframework.binding.convert.service.DefaultConversionService"></bean>
+	
+	<bean name="spelExpressionParser" class="org.springframework.expression.spel.standard.SpelExpressionParser"></bean>
+	
+</beans>
