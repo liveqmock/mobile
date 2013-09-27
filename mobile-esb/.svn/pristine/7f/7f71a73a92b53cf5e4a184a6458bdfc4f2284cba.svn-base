@@ -1,4 +1,0 @@
-<%@ include file="/WEB-INF/pages/include.jsp"%>
-<%@ page language="java" pageEncoding="UTF-8"%>
-<youi:page>
-<youi:form submit="查 询" reset="重 置" close="关 闭" id="form8" caption="用户"><youi:fieldLayout columns="0" showBorder="false" id="fieldLayout_form8" caption="表单布局"><youi:fieldText property="fieldText18" column="1" notNull="false" notVisible="false" caption="文本框18"></youi:fieldText><youi:fieldText property="fieldText12" column="1" notNull="false" notVisible="false" caption="文本框12"></youi:fieldText><youi:fieldText property="fieldText11" column="1" notNull="false" notVisible="false" caption="文本框11"></youi:fieldText></youi:fieldLayout></youi:form><youi:panel id="panel14" caption="acc"><youi:tree rootText="根节点" id="tree16"></youi:tree></youi:panel></youi:page>

@@ -1,5 +1,0 @@
-<%@ include file="/WEB-INF/pages/include.jsp"%>
-<%@ page language="java" pageEncoding="UTF-8"%>
-<youi:page>
-<youi:fieldLayout><youi:fieldHidden property="processDefinitionId"/><youi:fieldHidden property="taskId"/></youi:fieldLayout>
-<youi:fieldLayout columns="1" showBorder="false" id="fieldLayout_form6" caption="表单布局"><youi:fieldText property="numberOfDays" column="1" notVisible="false" caption="请假天数"></youi:fieldText><youi:fieldCalendar property="startDate" column="1" notVisible="false" caption="起始日期"></youi:fieldCalendar><youi:fieldText property="vacationMotivation" column="1" notVisible="false" caption="请假原因"></youi:fieldText><youi:fieldSelect mixed="false" convert="booleanConvert" property="vacationApproved" column="1" notVisible="false" caption="同意请假"></youi:fieldSelect></youi:fieldLayout></youi:page>
