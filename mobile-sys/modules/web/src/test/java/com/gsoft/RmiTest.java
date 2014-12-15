@@ -50,7 +50,7 @@ public class RmiTest extends AbstractJUnit4SpringContextTests{
 		
 		Message<?> result = messagingTemplate.sendAndReceive("start",mess);
 		Object obj = result.getPayload();
-//		[Payload=records:[管理用户, 周毅, 普通用户]]
+//		[Payload=records:[管理用户, 杨玉斌, 普通用户]]
 //		 [Headers={timestamp=1376966302578, id=b1fdaea6-ac5a-4cae-8a51-772578a25f77, channel=receiveChannel}]
 		System.out.println("******"+obj);
 	}
